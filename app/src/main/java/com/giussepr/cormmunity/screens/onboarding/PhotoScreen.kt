@@ -1,4 +1,4 @@
-package com.giussepr.cormmunity.onboarding
+package com.giussepr.cormmunity.screens.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -19,6 +19,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.giussepr.cormmunity.CorTopAppBar
 import com.giussepr.cormmunity.R
+import com.giussepr.cormmunity.navigation.AppGraph
 import com.giussepr.cormmunity.navigation.AppScreens
 
 @Preview
@@ -56,7 +57,7 @@ fun PhotoScreen(navController: NavHostController) {
 }
 
 private fun navigateToHome(navController: NavHostController) {
-    navController.navigate(AppScreens.HomeScreen.route) {
+    navController.navigate(AppGraph.HOME_GRAPH) {
         popUpTo(0) { inclusive = true }
     }
 }

@@ -8,4 +8,9 @@
     <string name="what_your_nickname_title">¿Cuál es tu apodo?</string>
     <string name="nickname">Apodo</string>
     <string name="photo_profile">Foto de perfil</string>
+    <string name="home">Inicio</string>
+    <string name="explore">Explorar</string>
+    <string name="create">Crear</string>
+    <string name="profile">Perfil</string>
+    <string name="notifications">Notificaciones</string>
 </resources>

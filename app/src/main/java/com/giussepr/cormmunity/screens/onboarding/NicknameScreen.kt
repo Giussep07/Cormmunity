@@ -1,12 +1,15 @@
-package com.giussepr.cormmunity.onboarding
+package com.giussepr.cormmunity.screens.onboarding
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -20,26 +23,22 @@ import com.giussepr.cormmunity.navigation.AppScreens
 
 @Preview
 @Composable
-fun PreviewNameScreen() {
-    NameScreen(rememberNavController())
+fun PreviewNicknameScreen() {
+    NicknameScreen(rememberNavController())
 }
 
 @Composable
-fun NameScreen(navController: NavHostController) {
-    var nameText by rememberSaveable { mutableStateOf("") }
+fun NicknameScreen(navController: NavHostController) {
+    var nicknameText by rememberSaveable { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        CorTopAppBar(title = stringResource(id = R.string.sign_up)) {
-            IconButton(onClick = { navController.navigate(AppScreens.NicknameScreen.route) }) {
-                Text(text = stringResource(id = R.string.skip))
-            }
-        }
+        CorTopAppBar(title = stringResource(id = R.string.sign_up))
         Spacer(modifier = Modifier.size(24.dp))
         Text(
-            text = stringResource(id = R.string.what_your_name_title),
+            text = stringResource(id = R.string.what_your_nickname_title),
             style = MaterialTheme.typography.h6
         )
         Spacer(modifier = Modifier.size(24.dp))
@@ -47,11 +46,11 @@ fun NameScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            value = nameText,
-            onValueChange = { nameText = it },
-            label = { Text(text = stringResource(id = R.string.name)) })
+            value = nicknameText,
+            onValueChange = { nicknameText = it },
+            label = { Text(text = stringResource(id = R.string.nickname)) })
         Spacer(modifier = Modifier.size(24.dp))
-        Button(onClick = { navController.navigate(AppScreens.NicknameScreen.route) }) {
+        Button(onClick = { navController.navigate(AppScreens.PhotoScreen.route) }) {
             Text(text = stringResource(id = R.string.next))
         }
     }
