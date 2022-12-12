@@ -13,4 +13,8 @@
     <string name="create">Crear</string>
     <string name="profile">Perfil</string>
     <string name="notifications">Notificaciones</string>
+    <string name="post_user_hours_ago">%1$s • %2$s</string>
+    <string name="join">Unirme</string>
+    <string name="upvote">Voto positivo</string>
+    <string name="downvote">Voto negativo</string>
 </resources>
