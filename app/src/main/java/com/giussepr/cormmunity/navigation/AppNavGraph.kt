@@ -22,4 +22,5 @@ fun AppNavGraph(navController: NavHostController) {
 object AppGraph {
     const val LOGIN_GRAPH = "login_graph"
     const val HOME_GRAPH = "home_graph"
+    const val CREATE_POST_GRAPH = "create_post_graph"
 }

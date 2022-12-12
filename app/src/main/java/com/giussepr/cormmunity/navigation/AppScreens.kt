@@ -7,5 +7,6 @@ sealed class AppScreens(val route: String) {
     object PhotoScreen: AppScreens("photo_screen")
     object HomeScreen :AppScreens("home_screen")
     object ExploreScreen :AppScreens("explore_screen")
-    object ProfileScreen :AppScreens("Profile_screen")
+    object ProfileScreen :AppScreens("profile_screen")
+    object CreatePostScreen :AppScreens("create_post_screen")
 }

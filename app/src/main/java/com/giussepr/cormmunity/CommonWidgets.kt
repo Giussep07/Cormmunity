@@ -1,10 +1,11 @@
 package com.giussepr.cormmunity
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,15 +21,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
-import coil.transform.CircleCropTransformation
 import com.giussepr.cormmunity.ui.theme.PostIconColor
 
 @Preview
 @Composable
 fun PreviewCorTopAppBar() {
-    CorTopAppBar()
+    CorTopAppBar(navController = rememberNavController())
 }
 
 @Preview
@@ -40,11 +41,23 @@ fun PreviewPostItem() {
 @Composable
 fun CorTopAppBar(
     title: String = stringResource(id = R.string.app_name),
+    navController: NavHostController = rememberNavController(),
     actions: @Composable RowScope.() -> Unit = {}
 ) {
-    TopAppBar(title = {
-        Text(text = title)
-    }, actions = actions)
+    TopAppBar(title = { Text(text = title) },
+        actions = actions,
+        navigationIcon = if (navController.previousBackStackEntry != null) {
+            {
+                IconButton(onClick = { navController.navigateUp() }) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Back"
+                    )
+                }
+            }
+        } else {
+            null
+        })
 }
 
 @Composable
@@ -94,7 +107,7 @@ fun PostItem() {
         // Title
         Text(
             text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            style = MaterialTheme.typography.body1,
+            style = MaterialTheme.typography.h6,
             modifier = Modifier.padding(horizontal = 8.dp)
         )
         // Description or Image

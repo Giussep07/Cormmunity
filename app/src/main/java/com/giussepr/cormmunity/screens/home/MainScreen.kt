@@ -1,18 +1,15 @@
 package com.giussepr.cormmunity.screens.home
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -31,30 +28,32 @@ fun PreviewHomeScreen() {
 
 @Composable
 fun MainScreen() {
-    val navController = rememberNavController()
-
-    Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
-        CorTopAppBar(title = stringResource(id = R.string.home), actions = {
-            Icon(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                painter = painterResource(id = R.drawable.ic_add),
-                tint = Color.White,
-                contentDescription = stringResource(id = R.string.create)
-            )
-        })
-    }, bottomBar = { CorBottomNavigation(navController) }) { paddingValues ->
-        HomeNavGraph(navController = navController, modifier = Modifier.padding(paddingValues))
-    }
-}
-
-@Composable
-fun CorBottomNavigation(navController: NavHostController) {
     val items = listOf(
         HomeBottomBarScreen.Home,
         HomeBottomBarScreen.Explore,
         HomeBottomBarScreen.Profile
     )
 
+    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+    val isBottomBarNavDestination = items.any { it.route == currentDestination?.route }
+
+    Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
+        if (isBottomBarNavDestination) {
+            CorTopAppBar(title = stringResource(id = R.string.home))
+        }
+    }, bottomBar = {
+        if (isBottomBarNavDestination) {
+            CorBottomNavigation(navController, items)
+        }
+    }) { paddingValues ->
+        HomeNavGraph(navController = navController, modifier = Modifier.padding(paddingValues))
+    }
+}
+
+@Composable
+fun CorBottomNavigation(navController: NavHostController, items: List<HomeBottomBarScreen>) {
     BottomNavigation {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
@@ -93,7 +92,7 @@ fun CorBottomNavigation(navController: NavHostController) {
     }
 }
 
-private sealed class HomeBottomBarScreen(
+sealed class HomeBottomBarScreen(
     val route: String,
     @DrawableRes val iconOn: Int,
     @DrawableRes val iconOff: Int

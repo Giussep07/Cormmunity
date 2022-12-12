@@ -17,4 +17,9 @@
     <string name="join">Unirme</string>
     <string name="upvote">Voto positivo</string>
     <string name="downvote">Voto negativo</string>
+    <string name="create_post">Crear post</string>
+    <string name="create_post_hint">Un increíble título</string>
+    <string name="create_post_description_hint">Agrega una descripción</string>
+    <string name="add_image_to_post">Agregar imagen</string>
+    <string name="add_text_to_post">Agrega descripción</string>
 </resources>
