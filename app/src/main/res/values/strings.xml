@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Cormmunity</string>
+    <string name="sign_up">Registro</string>
+    <string name="skip">Saltar</string>
+    <string name="what_your_name_title">¿Cuál es tu nombre? (Opcional)</string>
+    <string name="name">Nombre</string>
+    <string name="next">Siguiente</string>
+    <string name="what_your_nickname_title">¿Cuál es tu apodo?</string>
+    <string name="nickname">Apodo</string>
+    <string name="photo_profile">Foto de perfil</string>
 </resources>
